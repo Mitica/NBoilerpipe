@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Debug\NBoilerpipe.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -31,6 +32,10 @@
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Sharpen, Version=1.0.4932.23894, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Binaries\NBoilerpipe\Sharpen.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -96,16 +101,17 @@
     <Compile Include="Parser\TagAction.cs" />
     <Compile Include="Parser\TagActionMap.cs" />
     <Compile Include="Util\HttpUtility.cs" />
+    <Compile Include="Util\WebPageExtractor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Sharpen\Sharpen.csproj">
-      <Project>{BB30B844-5CB6-49F8-96F3-95539721EC19}</Project>
-      <Name>Sharpen</Name>
-    </ProjectReference>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "D:\Projects\Binaries\NBoilerpipe\"
+copy "$(TargetDir)$(TargetName).xml" "D:\Projects\Binaries\NBoilerpipe\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

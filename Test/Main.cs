@@ -14,13 +14,7 @@ namespace Test
 		    String url = "http://www.l3s.de/web/page11g.do?sp=page11g&link=ln104g&stu1g.LanguageISOCtxParam=en";
 //			String url = "http://www.dn.se/nyheter/vetenskap/annu-godare-choklad-med-hjalp-av-dna-teknik";
 
-			String page = String.Empty;
-			WebRequest request = WebRequest.Create (url);
-			HttpWebResponse response = (HttpWebResponse)request.GetResponse ();
-			Stream stream = response.GetResponseStream ();
-			using (StreamReader streamReader = new StreamReader (stream, Encoding.UTF8)) {
-				page = streamReader.ReadToEnd ();
-			}
+		    var page = new NBoilerpipe.Util.WebPageExtractor().GetHtml(url);
 			
 			String text = ArticleExtractor.INSTANCE.GetText (page);
 			Console.WriteLine ("Text: \n" + text);

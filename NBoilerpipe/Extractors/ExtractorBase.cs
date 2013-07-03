@@ -21,23 +21,42 @@ namespace NBoilerpipe.Extractors
 	/// <author>Christian Kohlsch√ºtter</author>
 	public abstract class ExtractorBase : BoilerpipeExtractor
 	{
+        /// <summary>
+        /// Last processed <see cref="NBoilerpipe.Document.TextDocument">TextDocument</see>.
+        /// </summary>
+	    public TextDocument ProcesssedTextDocument { get; private set; }
+
 		/// <summary>Extracts text from the HTML code given as a String.</summary>
 		/// <remarks>Extracts text from the HTML code given as a String.</remarks>
 		/// <param name="html">The HTML code as a String.</param>
 		/// <returns>The extracted text.</returns>
 		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException">NBoilerpipe.BoilerpipeProcessingException
 		/// 	</exception>
-		public virtual string GetText (string html)
-		{
-			try {
+        public virtual string GetText(string html)
+        {
+            return GetText(GetTextDocument(html));
+        }
 
-				NBoilerpipeHtmlParser parser = new NBoilerpipeHtmlParser (new NBoilerpipeContentHandler ());
-				parser.Parse (html);
-				return GetText (parser.ToTextDocument ());
-			} catch (Exception e) {
-				throw new BoilerpipeProcessingException (e.ToString());
-			}
-		}
+        /// <summary>
+        /// Extracts <see cref="NBoilerpipe.Document.TextDocument">TextDocument</see> from the HTML code given as a String..
+        /// </summary>
+        /// <param name="html">The HTML code as a String.</param>
+        /// <returns>The extracted <see cref="NBoilerpipe.Document.TextDocument">TextDocument</see>.</returns>
+        /// <exception cref="NBoilerpipe.BoilerpipeProcessingException">NBoilerpipe.BoilerpipeProcessingException
+        /// 	</exception>
+        public TextDocument GetTextDocument(string html)
+        {
+            try
+            {
+                var parser = new NBoilerpipeHtmlParser(new NBoilerpipeContentHandler());
+                parser.Parse(html);
+                return parser.ToTextDocument();
+            }
+            catch (Exception e)
+            {
+                throw new BoilerpipeProcessingException(e.ToString());
+            }
+        }
 
 		/// <summary>
 		/// Extracts text from the given
@@ -55,6 +74,7 @@ namespace NBoilerpipe.Extractors
 		public virtual string GetText(TextDocument doc)
 		{
 			Process(doc);
+		    ProcesssedTextDocument = doc;
 			return doc.GetContent();
 		}
 

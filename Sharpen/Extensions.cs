@@ -611,7 +611,7 @@ namespace Sharpen
 		public static int GetTotalInFixed (this Inflater inf)
 		{
 			if (inf.TotalIn > 0)
-				return inf.TotalIn + 4;
+				return (int)inf.TotalIn + 4;
 			else
 				return 0;
 		}

@@ -4,7 +4,7 @@ namespace Sharpen
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Threading;
-	using Mono.Unix;
+	//using Mono.Unix;
 
 	public class FilePath
 	{
@@ -304,7 +304,7 @@ namespace Sharpen
 		{
 			return new Uri (path);
 		}
-		
+		/*
 		// Don't change the case of this method, since ngit does reflection on it
 		public bool canExecute ()
 		{
@@ -331,7 +331,7 @@ namespace Sharpen
 			} catch {
 				return false;
 			}
-		}
+		}*/
 		
 		public string GetParent ()
 		{

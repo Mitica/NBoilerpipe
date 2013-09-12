@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NBoilerpipe.Util
 {
@@ -19,17 +20,17 @@ namespace NBoilerpipe.Util
         /// </summary>
         /// <param name="url">Web page URL</param>
         /// <returns></returns>
-        public string GetHtml(string url)
+        public async Task<string> GetHtml(string url)
         {
             var request = WebRequest.Create(url);
-            var response = (HttpWebResponse)request.GetResponse();
-            return DecodeData(response);
+            var response = (HttpWebResponse) await request.GetResponseAsync();
+            return await DecodeData(response);
         }
 
         #endregion
 
 
-        static string DecodeData(WebResponse w, Encoding defaultEncoding = null)
+        static async Task<string> DecodeData(WebResponse w, Encoding defaultEncoding = null)
         {
             defaultEncoding = defaultEncoding ?? Encoding.UTF8;
 
@@ -64,7 +65,7 @@ namespace NBoilerpipe.Util
                 rawdata = new MemoryStream();
                 var buffer = new byte[1024];
                 var rs = w.GetResponseStream();
-                int read = rs.Read(buffer, 0, buffer.Length);
+                int read = await rs.ReadAsync(buffer, 0, buffer.Length);
                 while (read > 0)
                 {
                     rawdata.Write(buffer, 0, read);
@@ -122,7 +123,7 @@ namespace NBoilerpipe.Util
 
             var sr = new StreamReader(data, e);
 
-            return sr.ReadToEnd();
+            return await sr.ReadToEndAsync();
         }
     }
 }

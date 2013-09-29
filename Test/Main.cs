@@ -10,11 +10,10 @@ namespace Test
 	{
 		public static void Main (string[] args)
 		{
-			
-		    String url = "http://www.l3s.de/web/page11g.do?sp=page11g&link=ln104g&stu1g.LanguageISOCtxParam=en";
-//			String url = "http://www.dn.se/nyheter/vetenskap/annu-godare-choklad-med-hjalp-av-dna-teknik";
 
-		    var page = new NBoilerpipe.Util.WebPageExtractor().GetHtml(url);
+            var url = "http://unimedia.info/stiri/video-flashmob-in-pman-sus-Tinem-vinul-moldovenesc-65465.html";
+
+		    var page = (new NBoilerpipe.Util.WebPageExtractor()).GetHtml(url).Result;
 			
 			String text = ArticleExtractor.INSTANCE.GetText (page);
 			Console.WriteLine ("Text: \n" + text);

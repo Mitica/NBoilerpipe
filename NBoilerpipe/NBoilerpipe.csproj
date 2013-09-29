@@ -95,6 +95,7 @@
     <Compile Include="Labels\ConditionalLabelAction.cs" />
     <Compile Include="Labels\DefaultLabels.cs" />
     <Compile Include="Labels\LabelAction.cs" />
+    <Compile Include="Util\ArticleUtility.cs" />
     <Compile Include="Util\UnicodeTokenizer.cs" />
     <Compile Include="Parser\NBoilerpipeContentHandler.cs" />
     <Compile Include="Parser\NBoilerpipeHtmlParser.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Parser\TagAction.cs" />
     <Compile Include="Parser\TagActionMap.cs" />
     <Compile Include="Util\HttpUtility.cs" />
+    <Compile Include="Util\UtilExtention.cs" />
     <Compile Include="Util\WebPageExtractor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

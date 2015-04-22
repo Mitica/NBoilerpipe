@@ -11,9 +11,9 @@ namespace Test
 		public static void Main (string[] args)
 		{
 
-            var url = "http://unimedia.info/stiri/video-flashmob-in-pman-sus-Tinem-vinul-moldovenesc-65465.html";
+            var url = "http://www.realitatea.net/cele-mai-mari-reduceri-la-laptopuri-i-calculatoare-second-hand_1681165.html";
 
-		    var page = (new NBoilerpipe.Util.WebPageExtractor()).GetHtml(url).Result;
+		    var page = NBoilerpipe.Util.ArticleUtility.ClearArticleByUrl(url, null);
 			
 			String text = ArticleExtractor.INSTANCE.GetText (page);
 			Console.WriteLine ("Text: \n" + text);

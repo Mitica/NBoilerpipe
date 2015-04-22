@@ -2,7 +2,7 @@
 
 namespace NBoilerpipe.Util
 {
-    public static class UtilExtention
+    internal static class UtilExtention
     {
         public static string WrapAtNoDots(this string target, int index)
         {
@@ -14,6 +14,15 @@ namespace NBoilerpipe.Util
         public static string RemoveDoubleSpaces(this string text)
         {
             return ReplaceDoubleCharacters(text, ' ', " ");
+        }
+        public static string RemoveDoubleWihteSpaces(this string text)
+        {
+            text = ReplaceDoubleCharacters(text, '\t', " ");
+            text = ReplaceDoubleCharacters(text, '\r', " ");
+            text = ReplaceDoubleCharacters(text, '\n', " ");
+            text = ReplaceDoubleCharacters(text, ' ', " ");
+
+            return text;
         }
         public static string ReplaceDoubleCharacters(this string text, char c, string replace)
         {
